@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 
 namespace C_Api
 {
-
-    public class Reqres
+ public class Reqres
     {
+        private readonly RestClient client;
+        private const string reqresBaseUrl = "https://reqres.in";
+
+        public Reqres()
+        {
+            var options = new RestClientOptions(reqresBaseUrl);
+            client = new RestClient(options);
+        }
         public void ExecuteAllRequests()
         {
             GetListOfUsers();
@@ -30,8 +37,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/users?page=2", Method.Get);
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
@@ -46,8 +51,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/users/2", Method.Get);
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
@@ -62,8 +65,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/users/23", Method.Get);
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
@@ -78,8 +79,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/unknown", Method.Get);
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
@@ -94,8 +93,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/unknown/2", Method.Get);
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
@@ -110,8 +107,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/unknown/23", Method.Get);
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
@@ -126,8 +121,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/users", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
                 var body = @"{
@@ -151,8 +144,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/register", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
                 var body = @"{
@@ -176,8 +167,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/register", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
                 var body = @"{
@@ -199,8 +188,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/login", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
                 var body = @"{
@@ -224,8 +211,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/login", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
                 var body = @"{
@@ -247,8 +232,6 @@ namespace C_Api
         {
             try
             {
-                var options = new RestClientOptions("https://reqres.in");
-                var client = new RestClient(options);
                 var request = new RestRequest("/api/users/2", Method.Put);
                 request.AddHeader("Content-Type", "application/json");
                 var body = @"{
